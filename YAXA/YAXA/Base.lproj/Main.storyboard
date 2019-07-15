@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="YAXA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="frY-lE-YrF">
+                                <rect key="frame" x="0.0" y="117" width="414" height="672"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88b-XG-W4C">
+                                <rect key="frame" x="0.0" y="70" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="88b-XG-W4C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="0pP-GY-xEm"/>
+                            <constraint firstItem="frY-lE-YrF" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="5qG-gB-qf2"/>
+                            <constraint firstItem="frY-lE-YrF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="FCX-Ja-hWJ"/>
+                            <constraint firstItem="88b-XG-W4C" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VQ4-f3-Tvd"/>
+                            <constraint firstItem="88b-XG-W4C" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="bbd-jV-YAJ"/>
+                            <constraint firstItem="frY-lE-YrF" firstAttribute="top" secondItem="88b-XG-W4C" secondAttribute="bottom" constant="26" id="cDz-ay-G14"/>
+                            <constraint firstItem="frY-lE-YrF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="efi-f4-2BW"/>
+                            <constraint firstItem="frY-lE-YrF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vpG-h2-tef"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="comicImageView" destination="frY-lE-YrF" id="u5R-Dt-QWn"/>
+                        <outlet property="comicTitleLabel" destination="88b-XG-W4C" id="RwG-78-Wea"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

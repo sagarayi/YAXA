@@ -1,1 +1,1 @@
-# YAXA
+# Yet Another XKCD App (YAXA)
