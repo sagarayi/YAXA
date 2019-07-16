@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var currentComicId: Int?
     var networkManager: NetworkManager?
     var coreDataManager: CoreDataManager?
-    var activityIndicatorView: UIView?
+    var activityIndicatorView: UIActivityIndicatorView?
     
     
     override func viewDidLoad() {
@@ -118,15 +118,17 @@ class ViewController: UIViewController {
     
     func showLoading() {
         if activityIndicatorView == nil {
-            activityIndicatorView = UIView.init(frame: CGRect(x: view.frame.height/2,y: view.frame.width/2, width: view.frame.height * 0.10, height: view.frame.width * 0.10))
-            let activityIndicator = UIActivityIndicatorView.init(style: .gray)
-            activityIndicatorView?.addSubview(activityIndicator)
+            activityIndicatorView = UIActivityIndicatorView.init(style: .whiteLarge)
+            activityIndicatorView?.center.x = self.view.center.x
+            activityIndicatorView?.frame.origin.y = self.view.frame.height - 40 // temp adjustment to make it appear at the bottom of screen
+            activityIndicatorView?.color = UIColor.darkGray
+            self.view.addSubview(activityIndicatorView!)
         }
-        self.view.addSubview(activityIndicatorView!)
+        activityIndicatorView?.startAnimating()
     }
     
     func stopLoading() {
-        activityIndicatorView?.removeFromSuperview()
+        activityIndicatorView?.stopAnimating()
     }
 
 }
