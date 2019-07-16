@@ -25,7 +25,7 @@ class CoreDataManager: NSObject {
         let comic = NSEntityDescription.insertNewObject(forEntityName: "Comic",
                                                         into: self.managedContext) as! Comic
         
-        comic.id = Int16(comicObject.id!)
+        comic.id = Int16(comicObject.id)
         comic.title = comicObject.title
         comic.desc = comicObject.desc
         comic.altDesc = comicObject.altDesc
@@ -51,15 +51,28 @@ class CoreDataManager: NSObject {
         do {
             let result = try managedContext.fetch(fetchRequest)
             if result.count != 0 {
-                completionHandler(result[0] as? XKCDComic, nil)
-//                return result[0] as! XKCDComic
+                completionHandler( mappingToCustomClass(dbComic: result[0] as! Comic), nil)
             }
-            else
-            {
+            else {
                 completionHandler(nil, nil)
             }
         } catch {
             completionHandler(nil, error)
         }
     }
+    
+    func mappingToCustomClass(dbComic: Comic) -> XKCDComic{
+        let xkcdComic = XKCDComic.init()
+        xkcdComic.id = Int(dbComic.id)
+        xkcdComic.title = dbComic.title!
+        xkcdComic.desc = dbComic.desc!
+        xkcdComic.altDesc = dbComic.altDesc!
+        xkcdComic.imgLink = dbComic.imgLink!
+        xkcdComic.day = dbComic.day!
+        xkcdComic.month = dbComic.month!
+        xkcdComic.year = dbComic.year!
+        
+        return xkcdComic
+    }
+    
 }

@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var currentComicId: Int?
     var networkManager: NetworkManager?
     var coreDataManager: CoreDataManager?
+    var activityIndicatorView: UIView?
     
     
     override func viewDidLoad() {
@@ -78,7 +79,7 @@ class ViewController: UIViewController {
     }
     
     func loadImageForID(imageID:String) {
-        
+        showLoading()
         coreDataManager?.fetchComicDataFor(imageID: imageID, completionHandler: { (xkcdComic, error) in
             if xkcdComic != nil {
                 DispatchQueue.main.async {
@@ -110,8 +111,22 @@ class ViewController: UIViewController {
     func updateCurrentComic(currentComic: XKCDComic) {
         self.currentComic = currentComic
         self.comicTitleLabel.text = self.currentComic?.title
-        self.comicImageView.image = self.getImageForURL(url: URL(string: self.currentComic!.imgLink!))
+        self.comicImageView.image = self.getImageForURL(url: URL(string: self.currentComic!.imgLink))
         self.currentComicId = self.currentComic?.id
+        stopLoading()
+    }
+    
+    func showLoading() {
+        if activityIndicatorView == nil {
+            activityIndicatorView = UIView.init(frame: CGRect(x: view.frame.height/2,y: view.frame.width/2, width: view.frame.height * 0.10, height: view.frame.width * 0.10))
+            let activityIndicator = UIActivityIndicatorView.init(style: .gray)
+            activityIndicatorView?.addSubview(activityIndicator)
+        }
+        self.view.addSubview(activityIndicatorView!)
+    }
+    
+    func stopLoading() {
+        activityIndicatorView?.removeFromSuperview()
     }
 
 }

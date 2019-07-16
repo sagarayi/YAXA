@@ -25,14 +25,25 @@
 import Foundation
 
 class XKCDComic: Codable {
-    var id:Int?
-    var title:String?
-    var desc: String?
-    var altDesc: String?
-    var imgLink: String?
-    var day:String?
-    var month:String?
-    var year:String?
+    var id:Int
+    var title:String
+    var desc: String
+    var altDesc: String
+    var imgLink: String
+    var day:String
+    var month:String
+    var year:String
+    
+      init() {
+        id = 0
+        title = ""
+        desc = ""
+        altDesc = ""
+        imgLink = ""
+        day = ""
+        month = ""
+        year = ""
+    }
     
     private enum CodingKeys : String, CodingKey {
         case id = "num", title = "safe_title", desc =  "transcript", altDesc = "alt", imgLink = "img"
