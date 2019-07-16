@@ -16,6 +16,8 @@
 		1BF74ED622DC6B99007A84B6 /* YAXAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF74ED522DC6B99007A84B6 /* YAXAUITests.swift */; };
 		1BF74EE422DC7F93007A84B6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF74EE322DC7F93007A84B6 /* NetworkManager.swift */; };
 		1BF74EE622DC83E2007A84B6 /* XKCDComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF74EE522DC83E2007A84B6 /* XKCDComic.swift */; };
+		1BF74EE822DDAC2D007A84B6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF74EE722DDAC2D007A84B6 /* CoreDataManager.swift */; };
+		1BF74EEB22DDB0C0007A84B6 /* Comic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BF74EE922DDB0C0007A84B6 /* Comic.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		1BF74ED722DC6B99007A84B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BF74EE322DC7F93007A84B6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1BF74EE522DC83E2007A84B6 /* XKCDComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XKCDComic.swift; sourceTree = "<group>"; };
+		1BF74EE722DDAC2D007A84B6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		1BF74EEA22DDB0C0007A84B6 /* Comic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Comic.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			children = (
 				1BF74EB522DC6B97007A84B6 /* AppDelegate.swift */,
 				1BF74EB722DC6B97007A84B6 /* ViewController.swift */,
+				1BF74EE722DDAC2D007A84B6 /* CoreDataManager.swift */,
+				1BF74EE922DDB0C0007A84B6 /* Comic.xcdatamodeld */,
 				1BF74EE522DC83E2007A84B6 /* XKCDComic.swift */,
 				1BF74EE322DC7F93007A84B6 /* NetworkManager.swift */,
 				1BF74EB922DC6B97007A84B6 /* Main.storyboard */,
@@ -265,7 +271,9 @@
 				1BF74EE422DC7F93007A84B6 /* NetworkManager.swift in Sources */,
 				1BF74EB822DC6B97007A84B6 /* ViewController.swift in Sources */,
 				1BF74EB622DC6B97007A84B6 /* AppDelegate.swift in Sources */,
+				1BF74EE822DDAC2D007A84B6 /* CoreDataManager.swift in Sources */,
 				1BF74EE622DC83E2007A84B6 /* XKCDComic.swift in Sources */,
+				1BF74EEB22DDB0C0007A84B6 /* Comic.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +602,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1BF74EE922DDB0C0007A84B6 /* Comic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1BF74EEA22DDB0C0007A84B6 /* Comic.xcdatamodel */,
+			);
+			currentVersion = 1BF74EEA22DDB0C0007A84B6 /* Comic.xcdatamodel */;
+			path = Comic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1BF74EAA22DC6B97007A84B6 /* Project object */;
 }

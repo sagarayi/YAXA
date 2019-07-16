@@ -28,10 +28,13 @@ class NetworkManager: NSObject {
         let requestTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             do
             {
-                let decoder = JSONDecoder()
-                let decoded = try decoder.decode(XKCDComic.self, from: data!)
-                print(decoded)
-                completionHandler(decoded,response, error)
+                print("the response is \(response)")
+                if data != nil {
+                    let decoder = JSONDecoder()
+                    let decoded = try decoder.decode(XKCDComic.self, from: data!)
+                    print(decoded)
+                    completionHandler(decoded,response, error)
+                }
             }
             catch
             {

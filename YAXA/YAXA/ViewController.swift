@@ -15,11 +15,24 @@ class ViewController: UIViewController {
     var currentComic: XKCDComic?
     var currentComicId: Int?
     var networkManager: NetworkManager?
+    var coreDataManager: CoreDataManager?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if coreDataManager == nil {
+            coreDataManager = CoreDataManager.init()
+        }
+        
+        addGestures()
+        
+        fetchImageForID(imageID: "")
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func addGestures() {
         let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(onLongPressed))
         self.comicImageView.addGestureRecognizer(longPress)
         
@@ -32,11 +45,6 @@ class ViewController: UIViewController {
         self.comicImageView.addGestureRecognizer(rightSwipe)
         
         self.comicImageView.isUserInteractionEnabled = true
-        
-        fetchImageForID(imageID: "")
-        
-        
-        // Do any additional setup after loading the view.
     }
 
     func getImageForURL(url:URL!) -> UIImage {
@@ -62,35 +70,25 @@ class ViewController: UIViewController {
     }
     
     @objc func onLeftSwiped(sender: UISwipeGestureRecognizer) {
-        
-        fetchImageForID(imageID: String(currentComicId!+1))
-//        if (self.currentComic != nil)
-//        {
-//            let alertController = UIAlertController.init(title: self.currentComic?.title, message: self.currentComic?.altDesc, preferredStyle: .alert)
-//            
-//            alertController.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
-//            
-//            
-//            self.present(alertController, animated: true, completion: nil)
-//        }
+        loadImageForID(imageID: String(currentComicId!+1))
     }
     
     @objc func onRightSwiped(sender: UISwipeGestureRecognizer) {
+        loadImageForID(imageID: String(currentComicId!-1))
+    }
+    
+    func loadImageForID(imageID:String) {
         
-        fetchImageForID(imageID: String(currentComicId!-1))
-        
-//        if (self.currentComic != nil)
-//        {
-//            let alertController = UIAlertController.init(title: self.currentComic?.title, message: self.currentComic?.altDesc, preferredStyle: .alert)
-//
-//            alertController.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
-//
-//            alertController.addAction(UIAlertAction.init(title: "Copy", style: .default, handler: { (_) in
-//                UIPasteboard.general.string = self.currentComic?.altDesc
-//            }))
-//
-//            self.present(alertController, animated: true, completion: nil)
-//        }
+        coreDataManager?.fetchComicDataFor(imageID: imageID, completionHandler: { (xkcdComic, error) in
+            if xkcdComic != nil {
+                DispatchQueue.main.async {
+                    self.updateCurrentComic(currentComic: xkcdComic!)
+                }
+            }
+            else {
+                self.fetchImageForID(imageID: imageID)
+            }
+        })
     }
     
     func fetchImageForID(imageID:String) {
@@ -102,13 +100,18 @@ class ViewController: UIViewController {
         networkManager?.fetchImageForId(imageID: imageID+"/", requestMethod: HTTPRequestMethod.get, completionHandler: { (xkcdComic, response, error) in
             if xkcdComic != nil {
                 DispatchQueue.main.async {
-                    self.currentComic = xkcdComic
-                    self.comicTitleLabel.text = self.currentComic?.title
-                    self.comicImageView.image = self.getImageForURL(url: URL(string: self.currentComic!.imgLink!))
-                    self.currentComicId = self.currentComic?.id
+                    self.coreDataManager?.saveImageData(comicObject: xkcdComic!)
+                    self.updateCurrentComic(currentComic: xkcdComic!)
                 }
             }
         })
+    }
+    
+    func updateCurrentComic(currentComic: XKCDComic) {
+        self.currentComic = currentComic
+        self.comicTitleLabel.text = self.currentComic?.title
+        self.comicImageView.image = self.getImageForURL(url: URL(string: self.currentComic!.imgLink!))
+        self.currentComicId = self.currentComic?.id
     }
 
 }
